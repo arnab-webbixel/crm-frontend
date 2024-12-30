@@ -1,59 +1,45 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { DataGrid } from '@mui/x-data-grid';
-import axios from 'axios';
-import debounce from 'lodash.debounce';
-
-const EditableDataGrid = () => {
-  const [rows, setRows] = useState([]);
-  
-  const [columns] = useState([
-    { field: 'id', headerName: 'ID', width: 90 },
-    { field: 'name', headerName: 'Name', width: 150, editable: true },
-    { field: 'email', headerName: 'Email', width: 200, editable: true },
-    { field: 'phone', headerName: 'Phone', width: 150, editable: true },
-  ]);
-  
-  // Fetch data from the server
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/users');  // Your API endpoint
-        setRows(response.data);
-      } catch (error) {
-        console.error("Error fetching data", error);
+// Async thunk for handling login
+export const loginUser = createAsyncThunk(
+  'auth/loginUser',
+  async ({ credentials, userType }, { rejectWithValue }) => {
+    try {
+      // Validate the userType (staff/admin)
+      if (!userType) {
+        return rejectWithValue('User type (staff/admin) is required');
       }
-    };
-    fetchData();
-  }, []);
 
-  // Handle the process row update with debouncing
-  const handleProcessRowUpdate = useCallback(
-    debounce(async (newRow) => {
-      try {
-        await axios.put(`/api/users/${newRow.id}`, newRow);  // Update endpoint
-        console.log("Row updated:", newRow);
-      } catch (error) {
-        console.error("Error updating row", error);
+      // Define the login endpoint based on the user type (staff or admin)
+      const loginEndpoint =
+        userType === 'staff'
+          ? 'http://46.202.163.75:3008/api/v1/login' // Staff login endpoint
+          : 'http://46.202.163.75:3002/api/v1/login'; // Admin/User login endpoint
+
+      // Make the POST request with credentials
+      const response = await axios.post(loginEndpoint, credentials, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Check if the response indicates success
+      if (response.data.success) {
+        // Extract token and staff/user data from the response
+        const data = response.data.data;
+        const token = data.token;
+        const user = userType === 'staff' ? data.staff : data.user; // Use staff data for staff login, user data for admin/user login
+
+        // Return the necessary data (token and user/staff details)
+        return {
+          token,
+          user,
+        };
+      } else {
+        // If the login was not successful, reject with a message
+        return rejectWithValue(response.data.message || 'Login failed');
       }
-    }, 1000), // Delay of 1 second for debouncing
-    []
-  );
-
-  const handleRowEdit = async (newRow) => {
-    handleProcessRowUpdate(newRow);
-    return newRow;
-  };
-
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        processRowUpdate={handleRowEdit}
-      />
-    </div>
-  );
-};
-
-export default EditableDataGrid;
+    } catch (error) {
+      // Handle any error that occurred during the login request
+      return rejectWithValue(error.response?.data?.message || 'Failed to login. Please try again.');
+    }
+  }
+);
