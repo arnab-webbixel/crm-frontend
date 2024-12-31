@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
+import { GridToolbar } from '@mui/x-data-grid';  
+
 
 export default function DataGridDemo({ columns, rows }) {
   return (
@@ -18,6 +20,14 @@ export default function DataGridDemo({ columns, rows }) {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
+        slots={{
+          toolbar: GridToolbar,  // Specify the toolbar to be used
+        }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,  // Enable the quick filter in the toolbar
+          },
+        }}
         sx={{
           '& .MuiDataGrid-columnHeaders': {
             backgroundColor: '#14758d',  // Change header background color

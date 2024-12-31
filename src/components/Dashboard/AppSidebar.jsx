@@ -95,18 +95,22 @@ const AppSidebar = ({ ...props }) => {
       }
 
 
-  return (
-  //   <Sidebar collapsible="icon" {...props} variant="sidebar"
-  //   >
-  //    <SidebarHeader className="text-white"> 
-  //     <TeamSwitcher  /> 
-  //   </SidebarHeader> 
-  //   <SidebarContent>
-  //     <NavMain items={data.navMain}  />
-  //   </SidebarContent>
-  // </Sidebar>
+  return (<>
+   <Sidebar collapsible="icon" {...props} variant="sidebar"
+    >
+     <SidebarHeader className="text-white"> 
+      <TeamSwitcher  /> 
+    </SidebarHeader> 
+    <SidebarContent>
+      <NavMain items={data.navMain}  />
+    </SidebarContent>
+  </Sidebar>
 
-<Sidebar
+
+  </>
+   
+// {
+  /* <Sidebar
       {...props}
       className={`transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-64"
@@ -115,20 +119,21 @@ const AppSidebar = ({ ...props }) => {
       {...(isCollapsed ? { collapsed: "true" } : {})}
     >
   
-  {/* Header Section */}
-  <SidebarHeader className="text-white flex items-center justify-between px-4 py-3">
-    <TeamSwitcher />
-    {/* Collapsible Icon */}
-    <button onClick={toggleSidebar} className="text-white">
-      {isCollapsed ? <BsArrowRightCircle size={20} /> : <BsArrowLeftCircle size={20} />}
-    </button>
-  </SidebarHeader>
+  {/* Header Section */
+// }
+  // <SidebarHeader className="text-white flex items-center justify-between px-4 py-3">
+    // <TeamSwitcher />
+    
+    // <button onClick={toggleSidebar} className="text-white">
+      // {isCollapsed ? <BsArrowRightCircle size={20} /> : <BsArrowLeftCircle size={20} />}
+    // </button>
+  // </SidebarHeader>
 
-  {/* Content Section */}
-  <SidebarContent>
-    <NavMain items={data.navMain} />
-  </SidebarContent>
- </Sidebar>
+ 
+  // <SidebarContent>
+    // <NavMain items={data.navMain} />
+  // </SidebarContent>
+//  </Sidebar> 
 
   )
 }

@@ -16,7 +16,7 @@
     "@fontsource/poppins": "^5.1.0",
     "@mui/icons-material": "^6.1.8",
     "@mui/material": "^6.2.0",
-    "@mui/x-data-grid": "^7.22.3",
+    "@mui/x-data-grid": "^7.23.5",
     "@mui/x-date-pickers": "^7.23.1",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.1",
