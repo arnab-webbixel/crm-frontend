@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { persistStore, persistReducer } from 'redux-persist';
 // Thunk to fetch clients by userId
 export const fetchClientsById = createAsyncThunk(
   'clients/fetchClientsById',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://46.202.163.75:3009/api/v1/client/${userId}`);
+      const response = await axios.get(`http://46.202.163.75:3009/api/v1/client/${userId}`); 
       return response.data.data;  
     } catch (error) {
       // Return a specific error message if API call fails
@@ -32,7 +31,6 @@ export const addClient = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       return response.data.data;  // Return the newly added client on success
     } catch (error) {
       console.error('Error details:', error); 
@@ -92,10 +90,10 @@ const clientSlice = createSlice({
     setError(state, action) {
       state.error = action.payload;
     },
-    setClients(state, action) {
-      state.clients = action.payload;
-      state.error = null;
-    },
+    // setClients(state, action) {
+    //   state.clients = action.payload;
+    //   state.error = null;
+    // },
     addClient(state, action) {
       state.clients.push(action.payload);  // Add new client to the state
     },
@@ -109,9 +107,6 @@ const clientSlice = createSlice({
     deleteClient(state, action) {
       state.clients = state.clients.filter((client) => client._id !== action.payload);  // Use _id
     },
-    resetState(state) {
-      return initialState;  // Reset state to initial values
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -121,7 +116,12 @@ const clientSlice = createSlice({
       })
       .addCase(fetchClientsById.fulfilled, (state, action) => {
         state.loading = false;
-        state.clients = [action.payload]
+      if (Array.isArray(action.payload)) {
+         state.clients = action.payload;  // If it's already an array, assign it directly
+       } else {
+        console.warn('Expected an array but got:', action.payload);
+        state.clients = [action.payload];  // Wrap it in an array if it's not an array
+       }
       })
       .addCase(fetchClientsById.rejected, (state, action) => {
         state.loading = false;

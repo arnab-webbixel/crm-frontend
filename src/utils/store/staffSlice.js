@@ -89,7 +89,7 @@ const staffSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(createStaff.pending,(state,action)=>{
+    .addCase(createStaff.pending,(state)=>{
       state.loading=true;
       state.error=null;
     })

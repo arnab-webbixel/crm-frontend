@@ -5,13 +5,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
 import AddDialog from '../../components/ui/AddDialog';
 import { useSelector, useDispatch } from 'react-redux';
-import {fetchClientsById, addClient} from "../../utils/store/clientSlice"
+import {fetchClientsById, addClient, deleteClient} from "../../utils/store/clientSlice"
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const ManageClient = () => {
    const dispatch = useDispatch();
    const { clients, loading, error } = useSelector((state) => state.clients);
-   console.log(clients + " all clients details ");
+
    const { user } = useSelector((state) => state.auth);
 
    React.useEffect(() => {
@@ -144,28 +144,38 @@ const ManageClient = () => {
     ]
 
     }, [])
+    const rows = React.useMemo(() => {
+      if (Array.isArray(clients) && clients.length > 0) {
+        return clients.map((client) => {
+          // Fallback to an empty string or other default if client._id is missing
+          const clientId = client._id || client.phone || client.email || 'default_id';
+          return {
+            id: clientId,  // Ensure each row has a unique id
+            company_name: client.company_name,
+            phone: client.phone,
+            email: client.email,
+            address: client.address,
+            industry_type: client.industry_type,
+            service_type: client.service_type,
+            schedule_date: client.schedule_date,
+            call_type: client.call_type,
+            remarks: Array.isArray(client.remarks)
+                      ? client.remarks.map(remark => remark.comment).join(', ') 
+                      : '',
+            whatsapp: client.phone,
+          };
+        });
+      }
+      return []; // Return an empty array if clients is empty or not an array
+    }, [clients]);
+    
 
-  const rows = React.useMemo(()=>{
-    if (Array.isArray(clients)  && clients.length > 0) {
-      return clients.map((client) => ({
-        id: client._id,
-        company_name: client.company_name,
-        phone: client.phone,
-        email: client.email,
-        address: client.address,
-        industry_type: client.industry_type,
-        service_type: client.service_type,
-        schedule_date: client.schedule_date,
-        call_type: client.call_type,
-        remarks: client.remarks.map(remark => remark.comment).join(', '),
-        whatsapp: client.phone,
-      }));
-    }
-    // return [];
-  }, [clients]
-  )
-
-
+    const handleDelete = (id) => {
+      if (window.confirm('Are you sure you want to delete this client?')) {
+        dispatch(deleteClient(id));
+      }
+    };
+  
 
 
    // Handle Add Client Dialog Close
