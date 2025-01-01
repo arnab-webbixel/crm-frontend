@@ -11,7 +11,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const ManageClient = () => {
    const dispatch = useDispatch();
    const { clients, loading, error } = useSelector((state) => state.clients);
-
+   console.log(clients + " all clients details ");
    const { user } = useSelector((state) => state.auth);
 
    React.useEffect(() => {

@@ -140,10 +140,10 @@ className={`w-7 h-7 cursor-pointer ${darkMode ? 'text-yellow-400' : 'text-gray-5
 
 
                 <h4
-  className="font-medium leading-none cursor-pointer text-white bg-[#0086a7] p-2 px-4 rounded-full hover:bg-[#006f8a] transition duration-200"
+  className="text-sm leading-none cursor-pointer text-white bg-[#0086a7] p-2 px-4 rounded-full hover:bg-[#006f8a] transition duration-200"
   onClick={handleLogout}
 >
- <img src={logout} alt="logout" className='w-5 h-4' />   Logout
+<div className='flex w-5 h-4'>  <img src={logout} alt="logout" className='mr-4' />   <span > Logout</span>  </div> 
 </h4>
                     </div>
 

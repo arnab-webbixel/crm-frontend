@@ -122,7 +122,6 @@ const clientSlice = createSlice({
       .addCase(fetchClientsById.fulfilled, (state, action) => {
         state.loading = false;
         state.clients = [action.payload]
-        // console.log(JSON.stringify(action.payload) + " in inside state client slice");
       })
       .addCase(fetchClientsById.rejected, (state, action) => {
         state.loading = false;
