@@ -6,7 +6,7 @@ import PieChartCard from "@/components/ui/PieChartCard";
 import RadialChartCard from "@/components/ui/RadialChartCard";
 import { fetchCallStatsById } from "../utils/store/countSlice";
 import Calender from "@/components/calender/Calender";
-import GaugeChart from "@/components/ui/GaugeChart";
+import CallStats from "@/components/ui/CallStats";
 const MainDashboard = () => {
   const [apiData, setApiData] = useState([]);
   const { callStats, loading, error } = useSelector((state) => state.count);
@@ -61,14 +61,14 @@ const MainDashboard = () => {
           />
         </div>
         <div className="h-120 w-100 ">
-         <GaugeChart
-          title={"Todays calls count"}
-          value={20}
-          startAngle={0}
-          endAngle={360}
-          innerRadius="80%"
-          outerRadius="100%"
-        />
+        <CallStats
+        total={200}
+        delivered={70}
+        received={80}
+        cancelled={50}
+        trend={5.2}
+        date="12.12.2024"
+      />
         </div>
 
         <div>

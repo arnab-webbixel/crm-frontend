@@ -3,6 +3,7 @@ import { PieChart, Pie, Label, Cell, Tooltip } from "recharts";  // Importing re
 import { ChartTooltipContent } from "./ChartTooltipContent";
 
 const PieChartComponent = ({ data, totalVisitors }) => {
+  
   return (
     // Wrapping PieChart component in a div to prevent overflow and control size
     <div className="pie-chart-container" style={{
@@ -24,7 +25,7 @@ const PieChartComponent = ({ data, totalVisitors }) => {
           nameKey="browser"
           innerRadius={60}  // Inner radius of the donut chart
           outerRadius={100} // Outer radius to define the size of the pie
-          strokeWidth={5}
+          strokeWidth={3}
         >
           {/* Rendering the pie chart segments with custom colors */}
           {data.map((entry, index) => (
@@ -56,7 +57,7 @@ const PieChartComponent = ({ data, totalVisitors }) => {
                       y={(viewBox.cy || 0) + 24}
                       className="fill-muted-foreground"
                     >
-                      Visitors
+                      Customers
                     </tspan>
                   </text>
                 );

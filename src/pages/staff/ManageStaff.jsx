@@ -149,6 +149,8 @@ const ManageStaff = () => {
         .catch((error) => {
           console.error('Error updating staff:', error);
         });
+    } else {
+      console.error('No staff selected for update');
     }
   };
   const processedStaffList = staffList.map((staff) => ({

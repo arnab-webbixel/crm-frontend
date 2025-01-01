@@ -135,11 +135,12 @@ const staffSlice = createSlice({
     })
     .addCase(updateStaff.fulfilled, (state, action) => {
       state.loading = false;
-      // Update the staff in the list
       const index = state.staffList.findIndex(staff => staff._id === action.payload._id);
       if (index !== -1) {
-        state.staffList[index] = action.payload; // Replace the updated staff with the new data
+      state.staffList[index] = action.payload; // Replace the updated staff with the new data
       }
+
+
     })
     .addCase(updateStaff.rejected, (state, action) => {
       state.loading = false;

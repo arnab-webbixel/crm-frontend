@@ -2,7 +2,6 @@ import React from 'react';
 import { TrendingUp } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./Card";
 import PieChart from "./PieChart";
-// import {ChartTooltipContent } from "./ChartTooltipContent";
 import { ChartContainer } from "./ChartContainer";
 
 const PieChartCard = ({ title, description, data, totalVisitors }) => {
