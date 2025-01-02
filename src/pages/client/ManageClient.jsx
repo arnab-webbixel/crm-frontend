@@ -205,6 +205,9 @@ const ManageClient = () => {
         call_type: '',
         remarks: '',
         schedule_date: '',
+        created_by: user.id,  // Automatically assign the logged-in user's ID
+        assigned_by: user.id,  // If this refers to the user who is managing the client
+        staff_id: '', 
         userId: user.id,  // Reset to the logged-in user ID
       });  // Reset form fields to their initial values
     } catch (error) {

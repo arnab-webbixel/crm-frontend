@@ -5,8 +5,8 @@ import Login from "../components/Login/Login";
 import Dashboard from "@/components/Dashboard/Dashboard";
 import MainDashboard from "@/pages/MainDashboard";
 // import AddStuff from "@/pages/staff/AddStaff";
-import ManageStuff from "@/pages/staff/ManageStaff";
-import StaffRole from "@/pages/staff/StaffRole";
+// import ManageStuff from "@/pages/staff/ManageStaff";
+// import StaffRole from "@/pages/staff/StaffRole";
 import AddClient from "@/pages/client/AddClient";
 import ManageClient from "@/pages/client/ManageClient";
 import UpdateClient from "@/pages/client/UpdateClient";
@@ -14,7 +14,7 @@ import UpdateClient from "@/pages/client/UpdateClient";
 
 import DefaultRemark from "@/pages/setting/DefaultRemark";
 import Signup from "@/components/Register/Signup";
-import StaffInformation from "@/pages/staff/StaffInformation";
+// import StaffInformation from "@/pages/staff/StaffInformation";
 import CompanyInformation from "@/pages/setting/CompanyInformation";
 import ClientInformation from "@/pages/client/ClientInformation";
 import ErrorBoundary from "./error/ErrorBoundry";
@@ -25,7 +25,7 @@ import Test from "../pages/Test";
 import ForgotPassword from "@/components/Login/ForgotPassword";
 import AddStaff from "@/pages/staff/AddStaff";
 import ManageStaff from "@/pages/staff/ManageStaff";
-
+import StaffLogin from "@/components/StaffLogin/StaffLogin";
 const router = createBrowserRouter(
   [
     {
@@ -64,6 +64,10 @@ const router = createBrowserRouter(
           element: <Footer />,
         },
         {
+         path: "/staff-login",
+         element: <StaffLogin />,
+        },
+        {
           path: "/test",
           element: <Test />,
         },
@@ -91,10 +95,10 @@ const router = createBrowserRouter(
               path: "dashboard", // This matches "/main/dashboard"
               element: <MainDashboard />,
             },
-            {
-              path: "staff",
-              element: <StaffInformation />,
-            },
+            // {
+            //   path: "staff",
+            //   element: <StaffInformation />,
+            // },
             {
               path: "staff/add",
               element: <AddStaff />,

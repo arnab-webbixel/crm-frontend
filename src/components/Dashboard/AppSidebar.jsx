@@ -32,7 +32,7 @@ const AppSidebar = ({ ...props }) => {
           },
           {
             title: "Staff Info",
-            url: "/main/staff",
+            url: "/main/staff/manage",
             icon: FaUserGroup,
             items: [
               // {

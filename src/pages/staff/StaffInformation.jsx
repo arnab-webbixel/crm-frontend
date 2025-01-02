@@ -264,7 +264,7 @@ const StaffInformation = () => {
                         <TableCell>8645791236</TableCell>
                         <TableCell>sourav@vais.co.in</TableCell>
                         <TableCell>1994-02-13</TableCell>
-                        <TableCell>In House Staff</TableCell>
+                        <TableCell>MD</TableCell>
                         <TableCell className="text-right">$250.00</TableCell>
                     </TableRow>
 
