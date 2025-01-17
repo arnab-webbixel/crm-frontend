@@ -49,7 +49,8 @@ const MainDashboard = () => {
   const isSales = user?.role === "sales";
 
   return (
-    <div>
+    <div >
+      
       <div className="mt-4 grid grid-cols-4 gap-4">
         <div>
           {/* Show PieChartCard for all roles */}
@@ -85,7 +86,7 @@ const MainDashboard = () => {
 
         <div>
           {/* Role-specific Sections */}
-          {isTelecaller && (
+          {/* {isTelecaller && (
             <div className="h-24 rounded-md flex justify-between items-center bg-white shadow-xl border border-gray-300 my-2 hover:scale-105">
               <div className="p-4">
                 <Avatar className="w-20 h-20">
@@ -123,12 +124,13 @@ const MainDashboard = () => {
                 </p>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
       <div>
       </div>
+    
     </div>
   );
 };

@@ -11,7 +11,7 @@ function App() {
     <>
      
     <BreadcrumbProvider>
-          <main>
+          <main >
             <Outlet />
             <Toaster position='top-right' />
           </main>

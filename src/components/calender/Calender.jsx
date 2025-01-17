@@ -57,23 +57,23 @@ const Calendar = () => {
 
   return (
     <>
-      <div className="bg-white rounded-2xl shadow-lg p-6 w-[380px]">
+      <div className="bg-white  dark:bg-gray-800  rounded-2xl shadow-lg p-6 w-[380px]">
         <div className="flex items-center justify-between mb-6">
-          <div className="text-xl font-semibold">
+          <div className="text-xl font-semibold dark:text-gray-100">
             {months[currentDate.getMonth()]} {currentDate.getFullYear()}
           </div>
           <div className="flex gap-2">
             <button
               onClick={previousMonth}
-              className="p-2 hover:bg-gray-100 rounded-full"
+              className="p-2 hover:bg-gray-100 rounded-full dark:hover:bg-gray-700"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={20}  className="text-gray-600 dark:text-gray-400"/>
             </button>
             <button
               onClick={nextMonth}
-              className="p-2 hover:bg-gray-100 rounded-full"
+              className="p-2 hover:bg-gray-100 rounded-full dark:hover:bg-gray-700 "
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={20} className="text-gray-600 dark:text-gray-400" />
             </button>
           </div>
         </div>
@@ -82,7 +82,7 @@ const Calendar = () => {
           {days.map((day) => (
             <div
               key={day}
-              className="text-xs font-medium text-gray-500 text-center"
+              className="text-xs font-medium text-gray-500 text-center dark:text-gray-400"
             >
               {day}
             </div>
@@ -102,9 +102,9 @@ const Calendar = () => {
                 onClick={() => handleDateClick(day)}
                 className={`
                   h-10 w-10 rounded-full flex items-center justify-center text-sm
-                  ${isToday(day) ? 'bg-blue-100 text-blue-600' : ''}
-                  ${isSelected(day) ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'}
-                  ${!isToday(day) && !isSelected(day) ? 'text-gray-700' : ''}
+                  ${isToday(day) ? 'bg-blue-100 text-blue-600 dark:bg-blue-500 dark:text-white' : ''}
+                  ${isSelected(day) ? 'bg-blue-500 text-white dark:bg-blue-600 dark:text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
+                  ${!isToday(day) && !isSelected(day) ? 'text-gray-700 dark:text-gray-300' : ''}
                 `}
               >
                 {day}
@@ -113,21 +113,21 @@ const Calendar = () => {
           })}
         </div>
 
-        <div className="flex items-center gap-4 mt-6 pt-4 border-t">
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
-            <div className="w-2 h-2 rounded-full bg-red-500" />
+        <div className="flex items-center gap-4 mt-6 pt-4 border-t dark:border-gray-700">
+          <button className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <div className="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400" />
             Report
           </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+          <button className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
             <div className="w-2 h-2 rounded-full bg-green-500" />
             Check
           </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
-            <div className="w-2 h-2 rounded-full bg-yellow-500" />
+          <button className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400  hover:text-gray-900 dark:hover:text-white">
+            <div className="w-2 h-2 rounded-full bg-yellow-500  dark:bg-yellow-400" />
             Visit
           </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
-            <div className="w-2 h-2 rounded-full bg-purple-500" />
+          <button className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <div className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400" />
             Meeting
           </button>
         </div>

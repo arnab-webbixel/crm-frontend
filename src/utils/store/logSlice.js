@@ -48,11 +48,11 @@ export const loginUser = createAsyncThunk(
     try {
       // const logUrl = process.env.REACT_APP_LOG_URL;
       // Replace with your backend API endpoint
-      const response = await axios.post('http://46.202.163.75:3002/api/v1/login',credentials, {
+      const response = await axios.post('https://crm.webbixel.com/api/api/v1/login',credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
-        // withCredentials: true, // Enable cookies if needed
+        withCredentials: true,
       });
 
       // Return response data: user info and token

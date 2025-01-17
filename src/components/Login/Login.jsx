@@ -5,9 +5,13 @@ import { loginUser, fetchUserProfile } from '../../utils/store/logSlice';
 import { toast } from 'sonner';
 import { logo} from '../../assets'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+import Turnstile, { useTurnstile } from "react-turnstile";
+
 const Login = () => {
   const [input, setInput] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState(""); 
   const { loading, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,8 +22,13 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      toast.error("Please complete the CAPTCHA");
+      return;
+    }
     try {
-      const result = await dispatch(loginUser(input));
+      const result = await dispatch(loginUser({ ...input, turnstileToken }));
       console.log(result);
 
       if (result.payload && result.payload.success) {
@@ -40,6 +49,9 @@ const Login = () => {
     }
   };
 
+  const handleTurnstileVerify = (token) => {
+    setTurnstileToken(token);  // Store the token after Turnstile verification
+  };
   return (
     <div className="bg-[#fefefe] dark:bg-[#0d1b1e] h-screen flex justify-center items-center">
     <div className="bg-white dark:bg-[#11252b] w-full max-w-md p-8 rounded-lg shadow-lg">
@@ -59,7 +71,7 @@ const Login = () => {
         </p>
       </div>
   
-      <form onSubmit={loginHandler}>
+      <form onSubmit={loginHandler} >
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2" htmlFor="email">
             Email
@@ -113,6 +125,13 @@ className="w-full border border-[#14758d] dark:border-[#1a9fb3] bg-white dark:bg
             Forgot Password?
           </Link>
         </div>
+        <div className="mb-4">
+            {/* Add the Turnstile widget here */}
+            <Turnstile
+              sitekey="0x4AAAAAAA4A2pRln0wTT0I8" // Replace with your actual sitekey
+              onVerify={handleTurnstileVerify}  // Callback to get the token
+            />
+          </div>
   
         <button
           type="submit"

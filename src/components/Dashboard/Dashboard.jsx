@@ -74,7 +74,7 @@ useEffect(()=>{
       <AppSidebar />
       <SidebarInset>
         
-        <header className=" sticky top-0 z-10 flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 bg-[#f3f3f3] border w-full">
+        <header className=" sticky top-0 z-10 flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 bg-[#e3e5e8] border w-full dark:bg-[#e0c7ff] shadow-md">
           <div className="flex items-center gap-2 px-4 ">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -160,7 +160,7 @@ className={`w-7 h-7 cursor-pointer ${darkMode ? 'text-yellow-400' : 'text-gray-5
 
 
         {/* Main content area */}
-        <div className="flex flex-1 flex-col gap-4  pt-0 ">
+        <div className="flex flex-1 flex-col gap-4  pt-0 bg-slate-400">
           {/* <MainDashboard/> */}
           <div className='flex-1 p-4' >
             <Outlet />

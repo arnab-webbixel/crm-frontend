@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     open: true,  // Automatically open browser
-    // port: 4173
+    // port: 4173,
+    hosts: '0.0.0.0', 
   },
   resolve: {
     alias: {
